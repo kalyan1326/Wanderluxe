@@ -1,0 +1,61 @@
+<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top border-bottom">
+  <div class="container">
+
+    <!-- Brand -->
+    <a class="navbar-brand fw-bold " href="/listings">
+      <i class="fa-solid fa-compass"></i>
+    </a>
+
+    <a class="navbar-name" href="/listings">
+      <h4 class="navbar-name fw-bold text-danger me-2">WanderLuxe</h4>
+    </a>
+
+    <!-- Toggle Button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-nav">
+      <a class="home-btn" href="/listings"></a>
+    </div>
+
+    <!-- Navbar Links -->
+    <div class="searchBar collapse navbar-collapse ms-2" id="navbarNavAltMarkup">
+
+      <form class="d-flex mx-auto" role="search" action="/listings" method="GET">
+        <input class="form-control me-2 rounded-pill px-3" type="search" name="search" placeholder="Search listings..."
+          aria-label="Search">
+
+        <button class="btn btn-outline-danger  rounded-pill px-4" type="submit">
+          Search
+        </button>
+      </form>
+
+
+      <!-- Right Side -->
+      <div class="navbar-nav ms-auto align-items-center">
+        <a class="host-btn me-4" href="/listings/new">
+          <i class="fa-solid fa-house-user me-2"></i>
+          Become a Host
+        </a>
+
+        <% if (!currUser) { %>
+          <a class="nav-link text-danger" href="/login">Login</a>
+          <a class="btn btn-danger ms-2 px-3" href="/signup">
+            Sign Up
+          </a>
+          <% } %>
+
+            <% if (currUser) { %>
+              <a href="/user/<%= currUser._id %>" class="text-dark me-4 fs-4"><i class="fa-solid fa-user"></i></a>
+              <a class="btn btn-outline-danger px-3" href="/logout">
+                Logout
+              </a>
+              <% } %>
+      </div>
+
+      <div class="test"></div>
+
+    </div>
+  </div>
+</nav>

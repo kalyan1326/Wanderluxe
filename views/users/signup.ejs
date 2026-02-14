@@ -1,0 +1,49 @@
+<% layout("/layouts/boilerplate") %>
+
+    <body>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-5">
+                    <div class="signup-card">
+
+                        <h3 class="signup-title">Create Account</h3>
+
+                        <form action="/signup" method="post" class="needs-validation" novalidate>
+
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" name="username" id="username" class="form-control" required>
+                                <div class="invalid-feedback">
+                                    Please enter username.
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" name="email" id="email" class="form-control" required>
+                                <div class="invalid-feedback">
+                                    Please enter valid email.
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" name="password" id="password" class="form-control" required>
+                                <div class="invalid-feedback">
+                                    Please enter password.
+                                </div>
+                            </div>
+
+                            <div class="d-grid">
+                                <button class="btn btn-custom text-white">Sign Up</button>
+                            </div>
+
+                            <div class="text-center mt-3">
+                                <small>Already have an account? <a href="/login">Login</a></small>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>

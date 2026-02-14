@@ -1,0 +1,97 @@
+<% layout("/layouts/boilerplate") %>
+
+    <body class="bg-light">
+
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-5">
+
+                    <div class="card shadow-sm">
+                        <div class="card-body p-4">
+
+                            <h3 class="text-center mb-4">Edit Listing</h3>
+
+                            <form method="POST" action="/listings/<%= listDetail._id %>?_method=PUT"
+                                enctype="multipart/form-data">
+
+                                <div class="mb-3">
+                                    <label class="form-label">Title</label>
+                                    <input type="text" name="listing[title]" value="<%= listDetail.title %>"
+                                        class="form-control" required />
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Description</label>
+                                    <textarea name="listing[description]" class="form-control"
+                                        rows="4"><%= listDetail.description %></textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <h6 class="form-label">Original Image</h6>
+                                    <img src="<%= originalListingImg %>" alt="" height="165" width="250">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Image URL</label> <br> <br>
+                                    <input type="file" name="listing[image]" value="<%= listDetail.image %>"
+                                        class="form-control" />
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Price (₹)</label>
+                                    <input type="number" name="listing[price]" value="<%= listDetail.price %>"
+                                        class="form-control" />
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Country</label>
+                                    <select name="listing[category]" class="form-select" required>
+
+                                        <option value="trending" <%=listDetail.category==="trending" ? "selected" : "" %>
+                                            >Trending</option>
+                                        <option value="rooms" <%=listDetail.category==="rooms" ? "selected" : "" %>>Rooms
+                                        </option>
+                                        <option value="cities" <%=listDetail.category==="cities" ? "selected" : "" %>
+                                            >Iconic Cities</option>
+                                        <option value="mountains" <%=listDetail.category==="mountains" ? "selected" : "" %>
+                                            >Mountains</option>
+                                        <option value="castles" <%=listDetail.category==="castles" ? "selected" : "" %>
+                                            >Castles</option>
+                                        <option value="pools" <%=listDetail.category==="pools" ? "selected" : "" %>>Amazing
+                                            Pools</option>
+                                        <option value="camping" <%=listDetail.category==="camping" ? "selected" : "" %>
+                                            >Camping</option>
+                                        <option value="farms" <%=listDetail.category==="farms" ? "selected" : "" %>>Farms
+                                        </option>
+                                        <option value="arctic" <%=listDetail.category==="arctic" ? "selected" : "" %>
+                                            >Arctic</option>
+                                    </select>
+
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Country</label>
+                                    <input type="text" name="listing[country]" value="<%= listDetail.country %>"
+                                        class="form-control" />
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label">Location</label>
+                                    <input type="text" name="listing[location]" value="<%= listDetail.location %>"
+                                        class="form-control" />
+                                </div>
+
+                                <button type="submit" class="btn btn-dark w-100">
+                                    Update Listing
+                                </button>
+
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </body>
