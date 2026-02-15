@@ -30,23 +30,10 @@ module.exports.index = async (req, res) => {
             allListings: Listings,
             search
         });
-
     }
     res.render("listings/index.ejs", { allListings })
 }
 
-// module.exports.filteredLists = async (req, res) => {
-//     const { category } = req.query;
-//     console.log(category)
-//     let listings = category
-//         ? await Listing.find({ category })
-//         : await Listing.find({});
-
-//     res.render("listings/index", {
-//         allListings: listings,
-//         selectedCategory: category
-//     });
-// }
 
 module.exports.renderNewForm = (req, res) => {
     res.render("listings/new.ejs");

@@ -4,11 +4,7 @@ const Listing = require("../models/listing.js");
 const Review = require("../models/review.js");
 const sampleReviews = require("./reviewData.js");
 const review = require("../models/review.js");
-
-
 const dbUrl = process.env.ATLASDB_URL;
-
-
 main()
     .then(res => console.log("successfully connected"))
     .catch(err => console.log("err", err))
