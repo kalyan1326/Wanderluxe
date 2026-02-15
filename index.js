@@ -9,6 +9,7 @@ const path = require("path")
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate")
 const wrapAsync = require("./utils/wrapAsync.js")
+const Listing = require("./models/listing.js")
 const ExpressError = require("./utils/ExpressError.js")
 const { listingSchema, reviewSchema } = require("./schema.js")
 const listingsRoute = require("./routes/listing.js")
@@ -71,9 +72,10 @@ passport.use(new LocalStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
-// app.get("/", (req, res) => {
-//     res.send("root is working")
-// })
+
+
+
+
 
 app.use((req, res, next) => {
     res.locals.success = req.flash("success")
@@ -90,6 +92,11 @@ app.use((req, res, next) => {
 //     let registeredUser = await User.register(fakeuser, "helloworld")
 //     res.send(registeredUser)
 // })
+
+app.get("/", async (req, res) => {
+    const listings = await Listing.find({});
+    res.render("./listings/home.ejs", { listings });
+});
 
 app.use("/listings", listingsRoute)
 app.use("/listings/:id/reviews", reviewsRoute)

@@ -1,0 +1,120 @@
+<% layout("/layouts/boilerplate") %>
+
+    <body>
+
+
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <div class="hero-content text-center">
+                <h1>Find your next stay</h1>
+                <p>Discover unique places to stay around the world</p>
+
+                <!-- <form action="/listings" method="GET" class="search-bar">
+                <input type="text" name="search" placeholder="Search destinations..." required>
+                <button type="submit">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form> -->
+                <form action="/listings" method="GET" class="search-bar">
+
+                    <div class="search-field">
+                        <label>Where</label>
+                        <input type="text" name="search" placeholder="Search destinations">
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="search-field">
+                        <label>Check in</label>
+                        <input type="date" name="checkin">
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="search-field">
+                        <label>Check out</label>
+                        <input type="date" name="checkout">
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="search-field">
+                        <label>Guests</label>
+                        <input type="number" name="guests" min="1" placeholder="Add guests">
+                    </div>
+
+                    <button type="submit" class="search-btn">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+
+                </form>
+            </div>
+        </section>
+
+        <!-- CATEGORY SECTION -->
+        <section class="categories container mt-5">
+            <h3 class="mb-4">Explore by Category</h3>
+            <div class="category-grid">
+
+                <a href="/listings" class="category-card">
+                    <i class="bi bi-grid"></i>
+                    <p>All Listings</p>
+                </a>
+
+                <a href="/listings?category=Trending" class="category-card">
+                    <i class="bi bi-fire"></i>
+                    <p>Trending</p>
+                </a>
+
+                <a href="/listings?category=Mountains" class="category-card">
+                    <i class="bi bi-tree"></i>
+                    <p>Mountains</p>
+                </a>
+
+                <a href="/listings?category=Iconic Cities" class="category-card">
+                    <i class="bi bi-building"></i>
+                    <p>Iconic Cities</p>
+                </a>
+
+                <a href="/listings?category=Beach" class="category-card">
+                    <i class="bi bi-water"></i>
+                    <p>Beach</p>
+                </a>
+
+            </div>
+        </section>
+
+
+
+
+        <!-- FEATURED LISTINGS -->
+        <section class="featured container mt-5">
+            <h3 class="mb-4">Featured Stays</h3>
+            <div class="row">
+                <% listings.slice(0,4).forEach(listing=> { %>
+                    <div class="col-md-3 mb-4">
+                        <a class="cc" href="listings/<%= listing._id %>">
+                            <div class="card listing-card">
+                                <img src="<%= listing.image.url %>" class="card-img-top" alt="">
+                                <div class="card-body">
+                                    <h6>
+                                        <%= listing.title %>
+                                    </h6>
+                                    <p class="text-muted mb-0">₹ <%= listing.price %> / night</p>
+                                    <p class="text-muted mb-0">📍 <%= listing.location %>, <%= listing.country %></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <% }) %>
+            </div>
+        </section>
+
+
+        <!-- CTA SECTION -->
+        <section class="cta text-center mt-5">
+            <h2>Become a Host</h2>
+            <p>Earn extra income and unlock new opportunities</p>
+            <a href="/listings/new" class="btn host-btn btn-outline-dark">Start Hosting</a>
+        </section>
+    </body>

@@ -2,7 +2,7 @@
 
     <body>
         <div class="container-card">
-            <div class="filters-wrapper border-bottom bg-white py-2">
+            <div class="filters-wrapper  bg-white py-2">
                 <div class="container">
                     <div class="filters d-flex align-items-center gap-4 overflow-auto">
 
@@ -12,25 +12,25 @@
                             <p class="mb-0 small">ALL</p>
                         </a> -->
                         <a href="/listings" class="filter-item text-center text-decoration-none text-dark">
-                            <i class="bi bi-grid fs-4"></i>
+                            <i class="bi bi-grid fs-4 sm-fs-4"></i>
                             <p class="mb-0 small">All</p>
                         </a>
 
                         <a href="/listings?category=trending"
                             class="filter-item text-center text-decoration-none text-dark">
-                            <i class="bi bi-fire fs-5"></i>
+                            <i class="bi bi-fire fs-5 sm-fs-4"></i>
                             <p class="mb-0 small">Trending</p>
                         </a>
 
                         <a href="/listings?category=rooms"
                             class="filter-item text-center text-decoration-none text-dark">
-                            <i class="bi bi-door-open fs-5"></i>
+                            <i class="bi bi-door-open fs-5 "></i>
                             <p class="mb-0 small">Rooms</p>
                         </a>
 
                         <a href="/listings?category=cities"
                             class="filter-item text-center text-decoration-none text-dark">
-                            <i class="bi bi-buildings fs-5"></i>
+                            <i class="bi bi-buildings lg-fs-5"></i>
                             <p class="mb-0 small">Iconic Cities</p>
                         </a>
 
@@ -76,38 +76,43 @@
             <div class="container">
                 <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 g-3">
 
-                    <% for(let listing of allListings) { %>
+                    <% if (!allListings.length) { %>
+                        <p>Sorry, No listings Available right now</p>
+                        <% } %>
 
-                        <div class="col">
-                            <a class="showlink text-decoration-none text-dark" href="/listings/<%= listing._id %>">
-                                <div class="card listing-card border-0 shadow-sm">
+                            <% for(let listing of allListings) { %>
 
-                                    <div class="image-wrapper">
-                                        <img src="<%= listing.image.url %>" class="card-img-top listing-img"
-                                            alt="<%= listing.title %>">
-                                    </div>
+                                <div class="col">
+                                    <a class="showlink text-decoration-none text-dark"
+                                        href="listings/<%= listing._id %>">
+                                        <div class="card listing-card border-0 shadow-sm">
 
-                                    <div class="card-body p-2">
-                                        <h6 class="card-title mb-1 fw-semibold">
-                                            <%= listing.title %>
-                                        </h6>
+                                            <div class="image-wrapper">
+                                                <img src="<%= listing.image.url %>" class="card-img-top listing-img"
+                                                    alt="<%= listing.title %>">
+                                            </div>
 
-                                        <p class="card-text text-muted mb-0 small">
-                                            <span class="fw-bold text-dark">
-                                                &#8377; <%= listing.price.toLocaleString("en-IN") %>
-                                            </span> / night
-                                        </p>
+                                            <div class="card-body p-2">
+                                                <h6 class="card-title mb-1 fw-semibold">
+                                                    <%= listing.title %>
+                                                </h6>
 
-                                        <p class="card-text text-muted mb-0 small">
-                                            📍 <%= listing.location %>, <%= listing.country %>
-                                        </p>
-                                    </div>
+                                                <p class="card-text text-muted mb-0 small">
+                                                    <span class="fw-bold text-dark">
+                                                        &#8377; <%= listing.price.toLocaleString("en-IN") %>
+                                                    </span> / night
+                                                </p>
 
+                                                <p class="card-text text-muted mb-0 small">
+                                                    📍 <%= listing.location %>, <%= listing.country %>
+                                                </p>
+                                            </div>
+
+                                        </div>
+                                    </a>
                                 </div>
-                            </a>
-                        </div>
 
-                    <% } %>
+                                <% } %>
 
                 </div>
             </div>

@@ -18,11 +18,18 @@ module.exports.index = async (req, res) => {
             selectedCategory: category
         });
     }
-    if (search) {
+    if (search && search.trim() !== "") {
         let Listings = await Listing.find({
-            title: { $regex: search, $options: "i" }
+            $or: [
+                { title: { $regex: search, $options: "i" } },
+                { location: { $regex: search, $options: "i" } },
+                { country: { $regex: search, $options: "i" } }
+            ]
         });
-        res.render("listings/index.ejs", { allListings : Listings })
+        res.render("listings/index.ejs", {
+            allListings: Listings,
+            search
+        });
 
     }
     res.render("listings/index.ejs", { allListings })

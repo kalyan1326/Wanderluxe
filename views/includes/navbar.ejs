@@ -1,61 +1,88 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top border-bottom">
+<nav class="navbar navbar-expand-lg custom-navbar sticky-top">
   <div class="container">
-
     <!-- Brand -->
-    <a class="navbar-brand fw-bold " href="/listings">
-      <i class="fa-solid fa-compass"></i>
+    <a class="navbar-brand fw-bold d-flex align-items-center" href="/">
+      <i class="fa-solid fa-compass text-danger me-2"></i>
+      <span class="text-danger fs-4">WanderLuxe</span>
     </a>
 
-    <a class="navbar-name" href="/listings">
-      <h4 class="navbar-name fw-bold text-danger me-2">WanderLuxe</h4>
-    </a>
-
-    <!-- Toggle Button -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+    <!-- Mobile Toggle Button -->
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileNavbar"
+      aria-controls="mobileNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="navbar-nav">
-      <a class="home-btn" href="/listings"></a>
-    </div>
+    <!-- Offcanvas -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileNavbar">
 
-    <!-- Navbar Links -->
-    <div class="searchBar collapse navbar-collapse ms-2" id="navbarNavAltMarkup">
-
-      <form class="d-flex mx-auto" role="search" action="/listings" method="GET">
-        <input class="form-control me-2 rounded-pill px-3" type="search" name="search" placeholder="Search listings..."
-          aria-label="Search">
-
-        <button class="btn btn-outline-danger  rounded-pill px-4" type="submit">
-          Search
-        </button>
-      </form>
-
-
-      <!-- Right Side -->
-      <div class="navbar-nav ms-auto align-items-center">
-        <a class="host-btn me-4" href="/listings/new">
-          <i class="fa-solid fa-house-user me-2"></i>
-          Become a Host
-        </a>
-
-        <% if (!currUser) { %>
-          <a class="nav-link text-danger" href="/login">Login</a>
-          <a class="btn btn-danger ms-2 px-3" href="/signup">
-            Sign Up
-          </a>
-          <% } %>
-
-            <% if (currUser) { %>
-              <a href="/user/<%= currUser._id %>" class="text-dark me-4 fs-4"><i class="fa-solid fa-user"></i></a>
-              <a class="btn btn-outline-danger px-3" href="/logout">
-                Logout
-              </a>
-              <% } %>
+      <!-- Offcanvas Header -->
+      <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title fw-bold text-danger">
+          <i class="fa-solid fa-compass me-3 mb-2"></i>WanderLuxe
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
       </div>
 
-      <div class="test"></div>
 
+      <!-- Offcanvas Body -->
+      <div class="offcanvas-body">
+
+        <!-- Search -->
+        <div class="search">
+          <form class="d-flex ms-auto" role="search" action="/listings" method="GET">
+            <input class="form-control me-2 rounded-pill px-3" type="search" name="search"
+              placeholder="Search Title/ Location/ Country..." aria-label="Search">
+            <button class="btn btn-danger rounded-pill px-4" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+
+        <!-- Links -->
+        <ul class="navbar-nav ms-auto align-items-start">
+
+          <li class="nav-item ">
+            <a href="/listings" class="nav-link text-danger fw-semibold">
+              All Listings
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link host-btn" href="/listings/new">
+              <i class="fa-solid fa-house-user me-1"></i>
+              Become a Host
+            </a>
+          </li>
+
+          <% if (!currUser) { %>
+            <li class="nav-item ">
+              <a class="nav-link text-danger" href="/login">Login</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="btn btn-danger px-3" href="/signup">Sign Up</a>
+            </li>
+            <% } %>
+
+              <% if (currUser) { %>
+                <li class="nav-item ">
+                  <a href="/user/<%= currUser._id %>" class="nav-link fs-5">
+                    <i class="fa-solid fa-user me-2"></i>
+                    Profile
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="btn btn-outline-danger px-3" href="/logout">
+                    Logout
+                  </a>
+                </li>
+                <% } %>
+
+        </ul>
+
+      </div>
     </div>
+
   </div>
 </nav>

@@ -1,3 +1,6 @@
+const Listing = require("../models/listing.js");
+const Review = require("../models/review.js");
+
 const User = require("../models/user.js");
 module.exports.renderSignUpform = (req, res) => {
     // res.send("Form")
@@ -42,6 +45,8 @@ module.exports.logout = (req, res, next) => {
 
 module.exports.userDetails = async(req, res) => {
     let {id} = req.params;
-    let user = await User.findById(id)
-    res.render("users/userDetails.ejs", {user})
+    const user = await User.findById(id);
+    const listings = await Listing.find({ owner: id });
+    const reviews = await Review.find({ author: id });
+    res.render("users/userDetails.ejs", {user, listings, reviews})
 }

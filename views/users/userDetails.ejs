@@ -1,7 +1,68 @@
 <% layout("/layouts/boilerplate") %>
 
-    <div class="user">
-        <span class="nav-link text-danger me-2">
-            Welcome, <%= currUser.username %>
-        </span>
+    <div class="container profile-page my-5">
+        <div class="card shadow-sm border-0 rounded-4 p-4 mb-4 profile-card">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h2 class="fw-bold mb-1">
+                        <%= user.username %>
+                    </h2>
+                    <p class="text-muted mb-2"><i class="fa-solid fa-envelope me-2"></i>
+                        <%= user.email %>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row text-center mb-5">
+            <div class="col-md-4 mb-3">
+                <div class="card shadow-sm border-0 rounded-4 p-4 stat-card">
+                    <h4 class="fw-bold text-danger">
+                        <%= listings.length %>
+                    </h4>
+                    <p class="mb-0 text-muted">Listings</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="card shadow-sm border-0 rounded-4 p-4 stat-card">
+                    <h4 class="fw-bold text-danger">
+                        <%= reviews.length %>
+                    </h4>
+                    <p class="mb-0 text-muted">Reviews</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <h3 class="fw-bold mb-3">My Listings</h3>
+            <% if(listings.length> 0) { %>
+                <div class="row">
+                    <% listings.forEach(listing=> { %>
+                        <div class="col-md-4 mb-4">
+                            <div class="card listing-card border-0 shadow-sm rounded-4 h-100">
+                                <img src="<%= listing.image.url %>" class="card-img-top rounded-top-4 listing-img"
+                                    alt="listing image">
+
+                                <div class="card-body">
+                                    <h5 class="card-title fw-bold">
+                                        <%= listing.title %>
+                                    </h5>
+                                    <p class="text-muted mb-2">
+                                        ₹ <%= listing.price.toLocaleString("en-IN") %> / night
+                                    </p>
+                                    <a href="/listings/<%= listing._id %>"
+                                        class="btn btn-outline-danger btn-sm rounded-pill">
+                                        View
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <% }) %>
+                </div>
+                <% } else { %>
+                    <p class="text-muted">No listings yet.</p>
+                    <% } %>
+        </div>
+
     </div>

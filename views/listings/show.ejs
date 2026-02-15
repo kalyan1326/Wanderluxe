@@ -1,7 +1,7 @@
 <%- layout("/layouts/boilerplate") %>
   <script>
     const mapToken = "<%= process.env.MAP_TOKEN %>"
-    const cordinates = <%- JSON.stringify(listDetail.geometry.coordinates) %>
+    const cordinates = <%-JSON.stringify(listDetail.geometry.coordinates)%>
   </script>
 
 
@@ -9,10 +9,10 @@
 
     <div class="container mt-5">
       <div class="row justify-content-center">
-        <div class="col-md-9 col-lg-7">
+        <div class="col-md-8 col-lg-6">
 
           <div class="card shadow-sm listing-card">
-            <img class="" height="300px" src="<%= listDetail.image.url %>"  alt="Listing image" />
+            <img class="" height="300px" src="<%= listDetail.image.url %>" alt="Listing image" />
 
             <div class="card-body">
 
@@ -20,9 +20,9 @@
                 <%= listDetail.title %>
               </h4>
 
-              <h6><i> Hosted By : 
-                <%= listDetail.owner.username %>
-              </i></h6>
+              <h6><i> Hosted By :
+                  <%= listDetail.owner.username %>
+                </i></h6>
 
               <p class="card-text text-muted">
                 <%= listDetail.description %>
@@ -33,7 +33,7 @@
               </h5>
 
               <p class="card-text text-muted">
-                category : 
+                category :
                 <%= listDetail.category %>
               </p>
 
@@ -55,7 +55,7 @@
                 </div>
                 <hr>
                 <% } %>
-                  
+
                   <% if (currUser) { %>
 
                     <div class="review mt-4">
@@ -123,21 +123,22 @@
                                 <!-- Delete Button -->
                                 <form action="/listings/<%= listDetail._id %>/reviews/<%= review._id %>?_method=DELETE"
                                   method="POST">
-                                  <button class="btn btn-sm btn-danger m-2 mt-0">
-                                    🗑 Delete
-                                  </button>
+                                  <% if (currUser._id.equals(review.author.id)) { %>
+                                    <button class="btn btn-sm btn-danger m-2 mt-0">
+                                      🗑 Delete
+                                    </button>
+                                    <% } %>
                                 </form>
                               </div>
                             </div>
                             <% } %>
                         </div>
-                        
                         <div>
                           <h3> Where you'll be</h3>
                           <div id="map"></div>
                         </div>
                       </div>
-                      
+
 
             </div>
           </div>
